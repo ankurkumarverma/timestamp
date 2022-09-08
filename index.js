@@ -12,8 +12,8 @@ app.get('/', (req, res) => {
     // res.sendFile(__dirname + "/public/index.html");
     // res.send("hello node")
 })
-app.get("/api/:input", (req, res) => {
-    let input = req.params.input;
+app.get("/api/:date", (req, res) => {
+    let input = req.params.date;
     if (input.includes("-")) {
         let output = new Date(input);
         sendData = { unix: output.getTime(), utc: output.toUTCString() }
