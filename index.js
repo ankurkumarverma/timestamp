@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors')
+require('dotenv').config()
 
 app.use(cors());
 
-const port = process.env.PORT || 80
+const port = process.env.PORT || 5000
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
