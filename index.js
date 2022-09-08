@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
     // res.sendFile(__dirname + "/public/index.html");
     // res.send("hello node")
 })
-app.get("/api/:date", (req, res) => {
+app.get("/api/timestamp/:date", (req, res) => {
     let date_string = req.params.date;
     if (date_string.includes("-")) {
         let output = new Date(date_string);
@@ -31,7 +31,7 @@ app.get("/api/:date", (req, res) => {
     }
     res.json(sendData)
 })
-app.get("/api/", (req, res) => {
+app.get("/api/timestamp", (req, res) => {
     let output = new Date();
     res.json({ unix: output.getTime(), utc: output.toUTCString() })
 })
