@@ -15,21 +15,31 @@ app.get('/', (req, res) => {
 })
 app.get("/api/:date", (req, res) => {
     let date_string = req.params.date;
-    if (date_string.includes("-")) {
-        let output = new Date(date_string);
-        sendData = { unix: output.getTime(), utc: output.toUTCString() }
-        if (!output.getTime() || !output.toUTCString()) {
-            res.json({ error: output.toUTCString() })
-        }
-    } else {
-        date_string = parseInt(date_string)
-        let output = new Date(date_string);
-        sendData = { unix: output.getTime(), utc: output.toUTCString() }
-        if (!output.getTime() || !output.toUTCString()) {
-            res.json({ error: output.toUTCString() })
-        }
+    // date_string    = date_string.match(/\d{5,}/)
+    if (date_string.match(/\d{5,}/)) {
+        date_string = +date_string;
     }
-    res.json(sendData)
+    let output = new Date(date_string);
+    if(output.toUTCString()=="Invalid Date"){
+        res.json({ error: output.toUTCString() })
+    }else{
+        res.json({ unix: output.getTime(), utc: output.toUTCString() })
+    }
+    // if (date_string) {
+    //     let output = new Date(date_string);
+    //     sendData = { unix: output.getTime(), utc: output.toUTCString() }
+    //     if (!output.getTime() || !output.toUTCString()) {
+    //         res.json({ error: output.toUTCString() })
+    //     }
+    // } else {
+    //     date_string = parseInt(date_string)
+    //     let output = new Date(date_string);
+    //     sendData = { unix: output.getTime(), utc: output.toUTCString() }
+    //     if (!output.getTime() || !output.toUTCString()) {
+    //         res.json({ error: output.toUTCString() })
+    //     }
+    // }
+    // res.json(sendData)
 })
 app.get("/api/", (req, res) => {
     let output = new Date();
