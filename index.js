@@ -14,16 +14,16 @@ app.get('/', (req, res) => {
     // res.send("hello node")
 })
 app.get("/api/:date", (req, res) => {
-    let input = req.params.date;
-    if (input.includes("-")) {
-        let output = new Date(input);
+    let date_string = req.params.date;
+    if (date_string.includes("-")) {
+        let output = new Date(date_string);
         sendData = { unix: output.getTime(), utc: output.toUTCString() }
         if (!output.getTime() || !output.toUTCString()) {
             res.json({ error: output.toUTCString() })
         }
     } else {
-        input = parseInt(input)
-        let output = new Date(input);
+        date_string = parseInt(date_string)
+        let output = new Date(date_string);
         sendData = { unix: output.getTime(), utc: output.toUTCString() }
         if (!output.getTime() || !output.toUTCString()) {
             res.json({ error: output.toUTCString() })
