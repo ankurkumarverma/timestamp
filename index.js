@@ -7,7 +7,7 @@ app.use(cors());
 const port = process.env.PORT || 80
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/public/index.html");
     // res.send("hello node")
 })
 app.get("/api/:input", (req, res) => {
