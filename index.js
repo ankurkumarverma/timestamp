@@ -5,9 +5,11 @@ const cors = require('cors')
 app.use(cors());
 
 const port = process.env.PORT || 80
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+    res.sendFile('index.html', { root: __dirname })
+    // res.sendFile(__dirname + "/public/index.html");
     // res.send("hello node")
 })
 app.get("/api/:input", (req, res) => {
